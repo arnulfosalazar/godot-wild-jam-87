@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b8maof4vb4hc7"
-path="res://.godot/imported/starcorn.glb-aead4d000f4076166bd100d92194844d.scn"
+path="res://.godot/imported/starcorn.glb-047f562c24a487af156f1d93f564bf3c.scn"
 
 [deps]
 
-source_file="res://assets/starcorn.glb"
-dest_files=["res://.godot/imported/starcorn.glb-aead4d000f4076166bd100d92194844d.scn"]
+source_file="res://spacefarmsim/assets/starcorn.glb"
+dest_files=["res://.godot/imported/starcorn.glb-047f562c24a487af156f1d93f564bf3c.scn"]
 
 [params]
 

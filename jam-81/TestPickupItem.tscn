@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq8x7mtlkg7eo"]
+
+[ext_resource type="Script" uid="uid://c150f57mb1id8" path="res://ItemVariations/ItemClass.gd" id="1_abc123"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pickup"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pickup"]
+size = Vector3(1, 1, 1)
+
+[node name="TestItem" type="StaticBody3D" groups=["pickup"]]
+script = ExtResource("1_abc123")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_pickup")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pickup")

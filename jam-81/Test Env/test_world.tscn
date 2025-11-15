@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://bd3j2liqmgq2c"]
+
+[ext_resource type="PackedScene" uid="uid://dcwhjdhrkpsb4" path="res://player.tscn" id="1_11y6c"]
+[ext_resource type="PackedScene" uid="uid://c387ofwn0faaa" path="res://spacefarmsim/assets/starcorn-mature.tscn" id="2_qq1kn"]
+[ext_resource type="Script" uid="uid://wqbgntt8o4pp" path="res://ItemVariations/Plant.gd" id="3_nmva4"]
+[ext_resource type="PackedScene" path="res://TestPickupItem.tscn" id="4_xi876"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xi876"]
+
+[sub_resource type="Sky" id="Sky_61ts4"]
+sky_material = SubResource("ProceduralSkyMaterial_xi876")
+
+[sub_resource type="Environment" id="Environment_jn8rs"]
+background_mode = 2
+sky = SubResource("Sky_61ts4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11y6c"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11y6c"]
+albedo_color = Color(0.34547704, 0.3287249, 1.92523e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qq1kn"]
+material = SubResource("StandardMaterial3D_11y6c")
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_plant"]
+size = Vector3(1, 2, 1)
+
+[node name="Test World" type="Node3D"]
+
+[node name="ENV" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ENV"]
+transform = Transform3D(1, 0, 0, 0, 0.14729153, 0.9890931, 0, -0.9890931, 0.14729153, 0, 12.287373, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ENV"]
+environment = SubResource("Environment_jn8rs")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_11y6c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_qq1kn")
+
+[node name="Player" parent="." instance=ExtResource("1_11y6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.087854385, 9.221262, -1.0705738)
+
+[node name="Plant" type="StaticBody3D" parent="." groups=["pickup"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.828386, 0.5, 10.58848)
+script = ExtResource("3_nmva4")
+
+[node name="starcorn-mature" parent="Plant" instance=ExtResource("2_qq1kn")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plant"]
+shape = SubResource("BoxShape3D_plant")
+
+[node name="TestItem" parent="." instance=ExtResource("4_xi876")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6833076, 1, 4.6238728)
