@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c387ofwn0faaa"]
+
+[ext_resource type="PackedScene" uid="uid://b8maof4vb4hc7" path="res://assets/starcorn.glb" id="1_rj1rh"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="starcorn" parent="." instance=ExtResource("1_rj1rh")]
