@@ -10,6 +10,8 @@ size = Vector3(1, 1, 1)
 
 [node name="TestItem" type="StaticBody3D" groups=["pickup"]]
 script = ExtResource("1_abc123")
+item_name = "Test Cube"
+item_type = "Tool"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_pickup")

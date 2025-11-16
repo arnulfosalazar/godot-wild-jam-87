@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bd3j2liqmgq2c"]
+
+[ext_resource type="PackedScene" uid="uid://daywnbwvqd6h" path="res://Cycle.tscn" id="1_2htty"]
+[ext_resource type="PackedScene" uid="uid://dcwhjdhrkpsb4" path="res://Scenes/player.tscn" id="1_11y6c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11y6c"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11y6c"]
+albedo_color = Color(0.34547704, 0.3287249, 1.92523e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qq1kn"]
+material = SubResource("StandardMaterial3D_11y6c")
+size = Vector3(30, 1, 30)
+
+[node name="Test World" type="Node3D"]
+
+[node name="Cycle" parent="." instance=ExtResource("1_2htty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.209019, 0)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05573654, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_11y6c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_qq1kn")
+
+[node name="Player" parent="." instance=ExtResource("1_11y6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.087854385, 9.221262, -1.0705738)

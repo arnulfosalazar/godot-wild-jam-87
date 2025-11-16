@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcwhjdhrkpsb4"]
+
+[ext_resource type="Script" uid="uid://drwlvkp6ohsor" path="res://Scripts/Player Scripts/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cjhp42i81f3bu" path="res://Scripts/Player Scripts/hands.gd" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_highlight"]
+top_radius = 1.5
+bottom_radius = 1.5
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_highlight"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.5)
+emission_enabled = true
+emission = Color(0, 0.5, 0, 1)
+rim_enabled = true
+rim = Color(1, 1, 1, 1)
+rim_tint = 0.5
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_4flbx")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27873755, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+
+[node name="HANDS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31277847, -1.217731)
+script = ExtResource("2_onrkg")
+
+[node name="HANDPlacement" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1222327)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InteractionUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+
+[node name="Background" type="ColorRect" parent="UI/InteractionUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="VBox" type="VBoxContainer" parent="UI/InteractionUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -25.0
+offset_right = 125.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemNameLabel" type="Label" parent="UI/InteractionUI/VBox"]
+layout_mode = 2
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="InteractionHint" type="Label" parent="UI/InteractionUI/VBox"]
+layout_mode = 2
+text = "Press E to pick up"
+horizontal_alignment = 1
+
+[node name="PlacementHighlight" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_highlight")
+surface_material_override/0 = SubResource("StandardMaterial3D_highlight")
+visible = false
